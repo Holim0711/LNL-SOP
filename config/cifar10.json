@@ -1,5 +1,5 @@
 {
-    "name": "cifar100_PreActResNet18",
+    "name": "cifar10_PreActResNet29",
     "n_gpu": 1,
     "seed": 666,
 
@@ -14,22 +14,22 @@
     },
 
     "arch": {
-        "type": "PreActResNet18",
-        "args": {"num_classes":100}
+        "type": "PreActResNet29",
+        "args": {"num_classes":10}
     },
 
     "reparam_arch": {
         "type": "reparameterization",
         "args": {
             "n_samples": 50000, 
-            "num_classes": 100, 
+            "num_classes": 10, 
             "init": "gaussian", 
             "mean": 0.0, 
             "std": 1e-8
         }
     },
 
-    "num_classes": 100,
+    "num_classes": 10,
 
     "data_augmentation":{
         "type": "autoaug_cifar10",
@@ -37,9 +37,9 @@
     },
 
     "data_loader": {
-        "type": "CIFAR100DataLoader",
+        "type": "CIFAR10DataLoader",
         "args":{
-            "data_dir": "",
+            "data_dir": "data/cifar10",
             "batch_size": 128,
             "shuffle": true,
             "num_batches": 0,
@@ -68,7 +68,7 @@
         }
     },
 
-    "lr_u": 1,
+    "lr_u": 10,
     "lr_v": 10,
 
 
@@ -78,7 +78,7 @@
         "type": "overparametrization_loss",
         "args":{
             "num_examp": 50000, 
-            "num_classes": 100,
+            "num_classes": 10,
             "ratio_consistency": 0.9,
             "ratio_balance": 0.1
         }

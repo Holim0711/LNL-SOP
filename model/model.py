@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from base import BaseModel
 from .ResNet_Zoo import ResNet, BasicBlock
-from .PreResNet import PreActResNet, PreActBlock
+from .resnets import PreactResNet, WideResNet
 from .parameterization_net import LabelParameterization
 from .InceptionResNetV2 import InceptionResNetV2
 from .densenet import DenseNet3
@@ -27,7 +27,14 @@ def resnet50(num_classes=14, rotation = False):
 def densenet(num_classes=10):
     return DenseNet3(25, num_classes=num_classes, growth_rate=12)
 
-def PreActResNet34(num_classes=10) -> PreActResNet:
-    return PreActResNet(PreActBlock, [3, 4, 6, 3], num_classes=num_classes)
-def PreActResNet18(num_classes=10) -> PreActResNet:
-    return PreActResNet(PreActBlock, [2, 2, 2, 2], num_classes=num_classes)
+def PreActResNet34(num_classes=10):
+    return PreactResNet(34, num_classes=num_classes)
+
+def PreActResNet18(num_classes=10):
+    return PreactResNet(17, num_classes=num_classes)
+
+def WideResNet28_2(num_classes=10):
+    return WideResNet(28, 2, num_classes=num_classes)
+
+def PreActResNet29(num_classes=10):
+    return PreactResNet(29, num_classes=num_classes)
